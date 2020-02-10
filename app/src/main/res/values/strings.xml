@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SIBNTT</string>
+    <string name="slogan">Sistem Informasi Budaya Nusa Tenggara Timur, merupakan sistem informasi yang memeberikan informasi kepada pengguna mengenai budaya yang terdapat di Provinsi Nusa Tenggara Timur.</string>
+    <string name="menu">Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_provinsi">ProvinsiActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>
