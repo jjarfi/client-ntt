@@ -25,7 +25,7 @@ public class ProvinsiActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
-        getMenuInflater().inflate(R.menu.makanan, menu);
+        getMenuInflater().inflate(R.menu.provinsi, menu);
         return true;
     }
 
@@ -35,7 +35,7 @@ public class ProvinsiActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_view:
                 break;
-            case R.id.action_search:
+            case R.id.action_settings:
                 break;
         }
 
