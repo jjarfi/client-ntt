@@ -13,7 +13,7 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class TarianActivity extends AppCompatActivity {
-    TextView tvTitle;
+    TextView tvTitle,txttarian;
     Menu menu;
 
     @Override
@@ -30,9 +30,11 @@ public class TarianActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tarian);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvTitle = findViewById(R.id.tvTitle);
+        txttarian = findViewById(R.id.txt_menu_tarian);
         tvTitle.setText("Tarian Daerah");
         Typeface face = Typeface.createFromAsset(getAssets(), "font/NABILA.TTF");
         tvTitle.setTypeface(face);
+        txttarian.setTypeface(face);
         setSupportActionBar(toolbar);
     }
 
