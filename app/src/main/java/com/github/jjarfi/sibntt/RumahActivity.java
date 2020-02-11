@@ -13,7 +13,7 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class RumahActivity extends AppCompatActivity {
-    TextView tvTitle;
+    TextView tvTitle,txtrumah;
     Menu menu;
 
     @Override
@@ -30,9 +30,11 @@ public class RumahActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rumah);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvTitle = findViewById(R.id.tvTitle);
+        txtrumah = findViewById(R.id.txt_menu_rumah);
         tvTitle.setText("Rumah Adat");
         Typeface face = Typeface.createFromAsset(getAssets(), "font/NABILA.TTF");
         tvTitle.setTypeface(face);
+        txtrumah.setTypeface(face);
         setSupportActionBar(toolbar);
     }
 
