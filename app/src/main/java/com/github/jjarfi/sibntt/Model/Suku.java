@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Suku {
 
     private int id;
-    private String nama;
+    private String namasuku;
     private String deskripsi;
     private String link;
     private Timestamp createdate;
@@ -14,9 +14,9 @@ public class Suku {
     public Suku() {
     }
 
-    public Suku(int id, String nama, String deskripsi, String link, Timestamp createdate, int createdby) {
+    public Suku(int id, String namasuku, String deskripsi, String link, Timestamp createdate, int createdby) {
         this.id = id;
-        this.nama = nama;
+        this.namasuku = namasuku;
         this.deskripsi = deskripsi;
         this.link = link;
         this.createdate = createdate;
@@ -31,12 +31,12 @@ public class Suku {
         this.id = id;
     }
 
-    public String getNama() {
-        return nama;
+    public String getNamasuku() {
+        return namasuku;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setNamasuku(String namasuku) {
+        this.namasuku = namasuku;
     }
 
     public String getDeskripsi() {

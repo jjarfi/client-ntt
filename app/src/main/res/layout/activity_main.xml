@@ -9,8 +9,9 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
     <TextView
+        android:id="@+id/tvJudul"
         android:text="SIB\u00AENTT"
-        android:textSize="68sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:fontFamily="cursive"
         android:textAlignment="center"
@@ -18,28 +19,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ntt" />
-
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvSlogan"
-            android:background="@color/overlayBackground"
-            android:textSize="24sp"
-            android:textColor="@android:color/white"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="@string/slogan"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@color/overlayBackground"
+            android:padding="7dp"
+            android:text="@string/slogan"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:layout_marginTop="50dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ntt"
+            android:contentDescription="TODO" />
+    </LinearLayout>
+
 </RelativeLayout>
