@@ -36,6 +36,8 @@ public class PakaianActivity extends AppCompatActivity {
         tvTitle.setTypeface(face);
         txtpakaian.setTypeface(face);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

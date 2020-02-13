@@ -36,6 +36,8 @@ public class RumahActivity extends AppCompatActivity {
         tvTitle.setTypeface(face);
         txtrumah.setTypeface(face);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

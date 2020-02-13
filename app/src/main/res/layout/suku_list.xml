@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:padding="15dp"
+    tools:context=".SukuActivity"
+    tools:showIn="@layout/activity_suku"
+    android:orientation="vertical">
+
+    <TextView android:id="@+id/txtsukutest"
+        android:padding="5dp"
+        android:textSize="30sp"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView android:id="@+id/txtdesk"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+
+

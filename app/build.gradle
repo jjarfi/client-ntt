@@ -70,7 +70,6 @@ dependencies {
     // Banner Slider - to display banner
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
     //Picasso Library
-    implementation 'com.squareup.picasso:picasso:2.71828'
     //KenBurnsView
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     //Elegant Number Button
@@ -90,9 +89,9 @@ dependencies {
     //Rating Material Design
     implementation 'com.stepstone.apprating:app-rating:2.2.0'
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+//    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+   // implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
     //Progress material design
     implementation 'com.github.d-max:spots-dialog:1.1'
     //FacebookShare
@@ -114,9 +113,15 @@ dependencies {
     implementation 'com.daimajia.slider:library:1.1.5@arr'
 
     //RxJava
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+   // implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+   // implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
     //Spring Framework
 
     implementation 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'

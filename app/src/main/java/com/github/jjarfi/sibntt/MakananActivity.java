@@ -42,6 +42,8 @@ public class MakananActivity extends AppCompatActivity {
         tvTitle.setTypeface(face);
         tvmenumakanan.setTypeface(face);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 

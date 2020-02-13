@@ -34,6 +34,8 @@ public class ProvinsiActivity extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset(getAssets(), "font/NABILA.TTF");
         tvTitle.setTypeface(face);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

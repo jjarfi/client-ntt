@@ -1,24 +1,25 @@
 package com.github.jjarfi.sibntt.Model;
 
+public class Musik {
+    private int id;
+    private String namamusik;
+    private String deskripsi;
+    private String link;
+    private String createdate;
+    private int createdby;
+    private int suku;
 
-public class Suku {
-
-    public int id;
-    public String namasuku;
-    public String deskripsi;
-    public String link;
-    public String createdate;
-    public int createdby;
-
-    public Suku() {
+    public Musik() {
     }
-    public Suku(int id, String namasuku, String deskripsi, String link, String createdate, int createdby) {
+
+    public Musik(int id, String namamusik, String deskripsi, String link, String createdate, int createdby, int suku) {
         this.id = id;
-        this.namasuku = namasuku;
+        this.namamusik = namamusik;
         this.deskripsi = deskripsi;
         this.link = link;
         this.createdate = createdate;
         this.createdby = createdby;
+        this.suku = suku;
     }
 
     public int getId() {
@@ -29,12 +30,12 @@ public class Suku {
         this.id = id;
     }
 
-    public String getNamasuku() {
-        return namasuku;
+    public String getNamamusik() {
+        return namamusik;
     }
 
-    public void setNamasuku(String namasuku) {
-        this.namasuku = namasuku;
+    public void setNamamusik(String namamusik) {
+        this.namamusik = namamusik;
     }
 
     public String getDeskripsi() {
@@ -67,5 +68,13 @@ public class Suku {
 
     public void setCreatedby(int createdby) {
         this.createdby = createdby;
+    }
+
+    public int getSuku() {
+        return suku;
+    }
+
+    public void setSuku(int suku) {
+        this.suku = suku;
     }
 }

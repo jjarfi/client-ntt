@@ -12,5 +12,5 @@
         android:gravity="center"
         android:fontFamily="cursive"
         android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        android:textSize="15dp" />
 </androidx.appcompat.widget.Toolbar>

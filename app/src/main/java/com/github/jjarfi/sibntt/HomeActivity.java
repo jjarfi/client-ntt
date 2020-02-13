@@ -5,60 +5,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-
 import com.andremion.counterfab.CounterFab;
+import com.github.jjarfi.sibntt.Adapter.HomeAdapter;
+import com.github.jjarfi.sibntt.Api.API;
 import com.github.jjarfi.sibntt.Model.Suku;
-import com.github.jjarfi.sibntt.Retrofit.apiSIBNTT;
+import com.github.jjarfi.sibntt.Service.SukuService;
 import com.google.android.material.navigation.NavigationView;
-
-
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import ss.com.bannerslider.Slider;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import static com.github.jjarfi.sibntt.R.layout.content_home;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    ListView simpleList;
-    String countryList[] = {"India", "China", "australia", "Portugle", "America", "NewZealand"};
+
+
     private static final String TAG = HomeActivity.class.getSimpleName();
-    TextView tvFullName, tvTitle;
+    TextView txttitleappname, tvTitle;
     CounterFab fab;
-    private RecyclerView recycler_menu;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private boolean statusItemList = false;
     Menu menu;
     Slider sliderLayout;
-    apiSIBNTT mService;
-    TestApi test;
-
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    SukuService sukuService;
+    List<Suku> listSuku = new ArrayList<>();
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +51,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        //Notes : add this code before setContentView
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("font/NABILA.TTF")
                 .setFontAttrId(R.attr.fontPath)
@@ -86,61 +70,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        recyclerView = (RecyclerView) findViewById(R.id.list_menu_home);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setHasFixedSize(true);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
-        tvFullName = headerView.findViewById(R.id.tvFullName);
-        swipeRefreshLayout = findViewById(R.id.swipe_layout);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
-                android.R.color.holo_green_dark,
-                android.R.color.holo_orange_dark,
-                android.R.color.holo_blue_dark
-        );
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-            }
-        });
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                //checkLoadMenuSwipe();
-            }
-        });
-
-       //  getBarnner();
-
+        txttitleappname = headerView.findViewById(R.id.tvTitleAppName);
+        sukuService = API.getSuku();
+        sukuList();
 
     }
 
-    private void getBarnner() {
-        compositeDisposable.add(mService.getBarner()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Suku>>() {
-                    @Override
-                    public void accept(List<Suku> sukus) throws Exception {
-                        displayImage(sukus);
-
-                    }
-                }));
-
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         compositeDisposable.dispose();
-    }
-
-    private void displayImage(List<Suku> sukus) {
-        HashMap<String, String> barnnerMap = new HashMap<>();
-        for (Suku item : sukus)
-            barnnerMap.put(item.getNamasuku(), item.getLink());
-
-        for (String name:barnnerMap.keySet()){
-          //TextSliderView n =
-        }
     }
 
 
@@ -208,58 +155,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-//        fab.setCount(new Database(this).getCountCart(Common.currentUser.getPhone()));
-//        if (adapter != null) adapter.startListening();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //adapter.stopListening();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        new HttpRequestTask().execute();
+
     }
 
-    private class HttpRequestTask extends AsyncTask<Void, Void, Suku[]> {
-
-        @Override
-        protected Suku[] doInBackground(Void... params) {
-            try {
-                final String url = "http://192.168.43.224:8083/api/suku"; // the  url from where to fetch data(json)
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                Suku[] info = restTemplate.getForObject(url, Suku[].class);
-                return info;
-            } catch (Exception e) {
-                Log.e("MainActivity", e.getMessage(), e);
+    public void sukuList() {
+        Call<List<Suku>> call = sukuService.getAllSuku();
+        call.enqueue(new Callback<List<Suku>>() {
+            @Override
+            public void onResponse(Call<List<Suku>> call, Response<List<Suku>> response) {
+                if (response.isSuccessful()) {
+                    listSuku = response.body();
+                    recyclerView.setAdapter(new HomeAdapter(HomeActivity.this, content_home, listSuku));
+                }
             }
 
-            return null;
 
-        }
+            @Override
+            public void onFailure(Call<List<Suku>> call, Throwable t) {
 
-        @Override
-        protected void onPostExecute(Suku[] sukus) {
-            super.onPostExecute(sukus);
-            HashMap<String, String> barnnerMap = new HashMap<>();
-            for (Suku s : sukus){
-                Log.i("Suku: ", "######################");
-                Log.i("ID: ", String.valueOf(s.getId()));
-                Log.i("NAMA: ", String.valueOf(s.getNamasuku()));
-                Log.i("DESKRIPSI: ", String.valueOf(s.getDeskripsi()));
-                Log.i("LINK: ", String.valueOf(s.getLink()));
-                Log.i("LINK: ", String.valueOf(s.getCreatedate()));
-                Log.i("LINK: ", String.valueOf(s.getCreatedby()));
-                Log.i("Suku: ", "######################");
-                barnnerMap.put(s.getNamasuku(), s.getLink());
             }
-
-        }
+        });
     }
-
 
 }

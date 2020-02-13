@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_layout"
@@ -7,28 +7,39 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_home">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <ss.com.bannerslider.Slider
             android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
             android:layout_margin="10dp"
-            app:slider_loopSlides="true"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
+            app:slider_loopSlides="true" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/simpleListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/material_blue_grey_800"
-                android:dividerHeight="1dp" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="DAFTAR SUKU NUSA TENGGARA TIMUR"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:scrollbars="none" />
 
 
     </LinearLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

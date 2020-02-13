@@ -17,8 +17,9 @@
         android:theme="@style/AppTheme.ActionBar.Transparent"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
-        <activity android:name=".TarianActivity"></activity>
-        <activity android:name=".MusikActivity" />
+        <activity android:name=".TarianActivity"/>
+        <activity android:name=".MusikActivity"
+            android:parentActivityName=".HomeActivity"/>
         <activity android:name=".MakananActivity" />
         <activity android:name=".RumahActivity" />
         <activity android:name=".PakaianActivity" />

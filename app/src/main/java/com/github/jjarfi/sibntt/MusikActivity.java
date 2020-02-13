@@ -36,6 +36,8 @@ public class MusikActivity extends AppCompatActivity {
         tvTitle.setTypeface(face);
         txtalatmusik.setTypeface(face);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

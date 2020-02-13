@@ -10,6 +10,7 @@
 
     <color name="overlayBackground">#7f333639</color>
     <color name="overlayActionBar">#0e0d0e</color>
+    <color name="hitam">#000000</color>
 
     <color name="pinkColor">#E91E63</color>
     <color name="bgRowBackground">#FA315B</color>
