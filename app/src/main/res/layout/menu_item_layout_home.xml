@@ -23,7 +23,6 @@
             android:scaleType="fitXY" />
         <TextView
             android:id="@+id/txt_nama_home"
-            android:text="Nasi Ikan"
             android:textSize="16sp"
             android:layout_marginLeft="4dp"
             android:textColor="@color/hitam"

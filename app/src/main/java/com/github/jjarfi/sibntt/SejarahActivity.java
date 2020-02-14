@@ -2,6 +2,8 @@ package com.github.jjarfi.sibntt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,11 +12,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.jjarfi.sibntt.Adapter.SejarahAdapter;
+import com.github.jjarfi.sibntt.Adapter.SukuAdapter;
+import com.github.jjarfi.sibntt.Api.API;
+import com.github.jjarfi.sibntt.Model.Sejarah;
+import com.github.jjarfi.sibntt.Model.Suku;
+import com.github.jjarfi.sibntt.Service.SejarahService;
+import com.github.jjarfi.sibntt.Service.SukuService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
+import static com.github.jjarfi.sibntt.R.layout.activity_sejarah;
+import static com.github.jjarfi.sibntt.R.layout.activity_suku;
 
 public class SejarahActivity extends AppCompatActivity {
     TextView tvTitle;
     Menu menu;
+
+    SejarahService sejarahService;
+    List<Sejarah> listSejarah = new ArrayList<>();
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +60,31 @@ public class SejarahActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        recyclerView = (RecyclerView) findViewById(R.id.recyler_sejarah);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
+        sejarahService = API.getSejarah();
+        sejarahList();
+    }
+
+
+    public void sejarahList() {
+        Call<List<Sejarah>> call = sejarahService.getAllSejarah();
+        call.enqueue(new Callback<List<Sejarah>>() {
+            @Override
+            public void onResponse(Call<List<Sejarah>> call, Response<List<Sejarah>> response) {
+                if (response.isSuccessful()) {
+                    listSejarah = response.body();
+                    recyclerView.setAdapter(new SejarahAdapter(SejarahActivity.this, activity_sejarah, listSejarah));
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Sejarah>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

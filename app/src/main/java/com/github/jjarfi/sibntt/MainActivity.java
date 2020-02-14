@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 finish();
             }
-        },5000);
+        },2000);
     }
     private void initViews() {
         tvSlogan   = findViewById(R.id.tvSlogan);

@@ -5,6 +5,8 @@
     android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_home">
 
@@ -13,24 +15,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ss.com.bannerslider.Slider
-            android:id="@+id/slider"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_margin="10dp"
-            app:slider_loopSlides="true" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:gravity="center"
-            android:fontFamily="sans-serif"
-            android:text="DAFTAR SUKU NUSA TENGGARA TIMUR"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_menu_home"
@@ -38,8 +22,25 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:scrollbars="none" />
+            android:scrollbars="none"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sejarah-sejarah Nusa Tenggara Timur"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_menu_sejarah_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:scrollbars="vertical|none" />
 
     </LinearLayout>
 </LinearLayout>

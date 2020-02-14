@@ -2,7 +2,8 @@ package com.github.jjarfi.sibntt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,16 +11,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.jjarfi.sibntt.Adapter.MakananAdapter;
+import com.github.jjarfi.sibntt.Adapter.SukuAdapter;
+import com.github.jjarfi.sibntt.Api.API;
+import com.github.jjarfi.sibntt.Model.Makanan;
 import com.github.jjarfi.sibntt.Model.Suku;
-
+import com.github.jjarfi.sibntt.Service.MakananService;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
+import static com.github.jjarfi.sibntt.R.layout.activity_makanan;
+import static com.github.jjarfi.sibntt.R.layout.activity_suku;
 
 public class MakananActivity extends AppCompatActivity {
     TextView tvTitle,selection,tvmenumakanan;
-    private List<Suku> sukuList = new ArrayList<>();
+    MakananService makananService;
+    List<Makanan> listMakanan = new ArrayList<>();
+
+    RecyclerView recyclerView;
     Menu menu;
 
     @Override
@@ -44,7 +58,32 @@ public class MakananActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        recyclerView = (RecyclerView) findViewById(R.id.recyler_makanan);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
 
+        makananService = API.getMakanan();
+        makananList();
+
+    }
+
+    public void makananList() {
+        Call<List<Makanan>> call = makananService.getAllMakanan();
+        call.enqueue(new Callback<List<Makanan>>() {
+            @Override
+            public void onResponse(Call<List<Makanan>> call, Response<List<Makanan>> response) {
+                if (response.isSuccessful()) {
+                    listMakanan = response.body();
+                    recyclerView.setAdapter(new MakananAdapter(MakananActivity.this, activity_makanan, listMakanan));
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Makanan>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

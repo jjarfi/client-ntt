@@ -16,8 +16,11 @@ import android.view.View;
 import android.widget.TextView;
 import com.andremion.counterfab.CounterFab;
 import com.github.jjarfi.sibntt.Adapter.HomeAdapter;
+import com.github.jjarfi.sibntt.Adapter.HomeSejarahAdapter;
 import com.github.jjarfi.sibntt.Api.API;
+import com.github.jjarfi.sibntt.Model.Sejarah;
 import com.github.jjarfi.sibntt.Model.Suku;
+import com.github.jjarfi.sibntt.Service.SejarahService;
 import com.github.jjarfi.sibntt.Service.SukuService;
 import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
@@ -38,12 +41,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     TextView txttitleappname, tvTitle;
     CounterFab fab;
     Menu menu;
-    Slider sliderLayout;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     SukuService sukuService;
+    SejarahService sejarahService;
     List<Suku> listSuku = new ArrayList<>();
+    List<Sejarah> listSejarah = new ArrayList<>();
 
     RecyclerView recyclerView;
+    RecyclerView recyclerView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        sliderLayout = (Slider) findViewById(R.id.slider);
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText("Dashboard");
         setSupportActionBar(toolbar);
@@ -74,12 +78,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
 
+        recyclerView1 = (RecyclerView) findViewById(R.id.list_menu_sejarah_home);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView1.setHasFixedSize(true);
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         txttitleappname = headerView.findViewById(R.id.tvTitleAppName);
+
         sukuService = API.getSuku();
         sukuList();
+
+        sejarahService = API.getSejarah();
+        sejarahList();
 
     }
 
@@ -182,6 +195,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onFailure(Call<List<Suku>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void sejarahList() {
+        Call<List<Sejarah>> call = sejarahService.getAllSejarah();
+        call.enqueue(new Callback<List<Sejarah>>() {
+            @Override
+            public void onResponse(Call<List<Sejarah>> call, Response<List<Sejarah>> response) {
+                if (response.isSuccessful()) {
+                    listSejarah = response.body();
+                    recyclerView1.setAdapter(new HomeSejarahAdapter(HomeActivity.this, content_home, listSejarah));
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Sejarah>> call, Throwable t) {
 
             }
         });
