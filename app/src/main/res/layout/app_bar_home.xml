@@ -37,7 +37,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:iconTint="@android:color/white"
-        android:src="@drawable/ic_check_circle_white_24dp"
+        app:srcCompat="@drawable/ic_help"
         app:backgroundTint="@color/bgRowBackground" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
