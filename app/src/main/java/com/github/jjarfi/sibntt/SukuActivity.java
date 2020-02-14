@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,7 +97,7 @@ public class SukuActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Suku>> call, Throwable t) {
-
+                Log.e("Error di", t.getMessage());
             }
         });
     }

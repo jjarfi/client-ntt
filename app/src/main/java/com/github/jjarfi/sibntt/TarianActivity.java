@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,7 +87,7 @@ public class TarianActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Tarian>> call, Throwable t) {
-
+                Log.e("Error di", t.getMessage());
             }
         });
     }
